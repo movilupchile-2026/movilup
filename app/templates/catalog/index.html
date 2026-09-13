@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block title %}Catálogo | MovilUP Chile{% endblock %}
+{% block description %}Catálogo de upgrades, audio, cámaras, seguridad, iluminación, accesorios y soluciones de integración para vehículos.{% endblock %}
+
+{% block content %}
+<section class="border-b border-white/5 bg-[#081219]">
+  <div class="mx-auto max-w-7xl px-5 pb-16 pt-28 lg:px-8 lg:pb-20">
+    <p class="section-kicker">MovilUP / Catálogo</p>
+    <h1 class="mt-3 max-w-4xl text-5xl font-black tracking-[-.04em] sm:text-6xl">No vendemos solo piezas.<br><span class="text-cyan-300">Diseñamos upgrades.</span></h1>
+    <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+      Explora soluciones para multimedia, audio, seguridad, iluminación e integración. La disponibilidad y compatibilidad se confirma según tu vehículo.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-2 text-xs font-bold text-slate-300">
+      <span class="catalog-chip">🟢 Stock / disponibilidad rápida</span>
+      <span class="catalog-chip">🔵 Bajo pedido</span>
+      <span class="catalog-chip">🟣 Producto internacional</span>
+    </div>
+  </div>
+</section>
+
+<section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    {% for icon,title,text in [
+      ('📱','Multimedia','Radios Android, 2 DIN, CarPlay, Android Auto y Bluetooth.'),
+      ('📐','Biseles & adaptadores','Marcos, adaptadores y soluciones para integrar la unidad al tablero.'),
+      ('🎥','Cámaras & dashcams','Retroceso, frontal, DVR, dashcams y soluciones de visión.'),
+      ('🔊','Audio','Parlantes, kits, subwoofers, amplificación y mejoras de sonido.'),
+      ('🅿️','Parking','Sensores y cámaras para facilitar las maniobras.'),
+      ('🛞','TPMS externo','Monitoreo de presión y temperatura de neumáticos.'),
+      ('💡','Iluminación','LED interior, exterior y soluciones de ambiente.'),
+      ('🎛️','Integración','CANBUS, controles al volante, interfaces y accesorios.')
+    ] %}
+      <a href="#{{ title|lower|replace(' ','-')|replace('&','and')|replace('ó','o') }}"
+         class="service-card min-h-0">
+        <div class="service-icon">{{ icon }}</div>
+        <h2 class="mt-5 text-lg font-black">{{ title }}</h2>
+        <p class="mt-2 text-sm leading-6 text-slate-400">{{ text }}</p>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="mt-20">
+    <div class="max-w-2xl">
+      <p class="section-kicker">Audio</p>
+      <h2 class="section-title">Más sonido. Más posibilidades.</h2>
+      <p class="section-copy">Desde una mejora sencilla hasta un sistema completo con amplificación y subwoofer.</p>
+    </div>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {% for image,title,desc in [
+        ('subwoofer-activo-10-rockera.jpg','Subwoofer activo 10"','Solución integrada para sumar graves sin montar un sistema complejo.'),
+        ('amplificador-autotek-1100w.png','Amplificador Autotek','Amplificación para proyectos de audio que requieren mayor potencia.'),
+        ('amplificador-sony.png','Amplificador Sony','Alternativa para proyectos de audio con componentes de marca.'),
+        ('woofer-compacto.png','Woofer compacto','Formato práctico para proyectos donde el espacio es importante.'),
+        ('woofer-caja.png','Subwoofer en caja','Mayor presencia de graves para una experiencia de audio más completa.'),
+        ('parlantes-jbl.png','Parlantes JBL','Upgrade de parlantes para mejorar claridad y respuesta sonora.'),
+        ('kit-audio-aiwa.png','Kit de audio Aiwa','Solución completa de radio + parlantes para una actualización sencilla.'),
+        ('parlantes-componentes.png','Kit de componentes','Parlantes y tweeters para proyectos de audio más elaborados.')
+      ] %}
+      <article class="catalog-card">
+        <div class="catalog-image"><img src="{{ url_for('static', filename='images/products/' ~ image) }}" alt="{{ title }}" loading="lazy"></div>
+        <div class="p-5">
+          <p class="text-xs font-black uppercase tracking-[.18em] text-cyan-300">Audio</p>
+          <h3 class="mt-2 text-lg font-black">{{ title }}</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-400">{{ desc }}</p>
+          <a href="/cotizar" class="mt-4 inline-flex text-xs font-black uppercase tracking-wider text-cyan-300">Consultar upgrade →</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="mt-20">
+    <div class="max-w-2xl">
+      <p class="section-kicker">Seguridad & visión</p>
+      <h2 class="section-title">Tecnología para ver y conducir mejor.</h2>
+      <p class="section-copy">Cámaras, dashcams, retrovisores inteligentes y monitoreo de neumáticos.</p>
+    </div>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {% for image,title,desc in [
+        ('dashcam-kit.png','Dashcam','Registro de conducción y opciones de cámara frontal/trasera.'),
+        ('retrovisor-camara-premium.jpg','Retrovisor inteligente','Solución de espejo con cámara y monitor integrado.'),
+        ('retrovisor-camara.jpg','Retrovisor con cámara','Alternativa para sumar visión trasera y funciones multimedia.'),
+        ('tpms-externo.png','TPMS externo','Monitoreo de presión y temperatura con sensores externos.')
+      ] %}
+      <article class="catalog-card">
+        <div class="catalog-image"><img src="{{ url_for('static', filename='images/products/' ~ image) }}" alt="{{ title }}" loading="lazy"></div>
+        <div class="p-5">
+          <p class="text-xs font-black uppercase tracking-[.18em] text-cyan-300">Seguridad</p>
+          <h3 class="mt-2 text-lg font-black">{{ title }}</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-400">{{ desc }}</p>
+          <a href="/cotizar" class="mt-4 inline-flex text-xs font-black uppercase tracking-wider text-cyan-300">Consultar →</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="mt-20">
+    <div class="max-w-2xl">
+      <p class="section-kicker">Accesorios & detalles</p>
+      <h2 class="section-title">Los pequeños upgrades también cuentan.</h2>
+      <p class="section-copy">LED, accesorios y soluciones que permiten completar el proyecto según el vehículo y el presupuesto.</p>
+    </div>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <article class="catalog-card">
+        <div class="catalog-image"><img src="{{ url_for('static', filename='images/products/led-automotriz.jpg') }}" alt="Iluminación LED automotriz" loading="lazy"></div>
+        <div class="p-5"><p class="text-xs font-black uppercase tracking-[.18em] text-cyan-300">Iluminación</p><h3 class="mt-2 text-lg font-black">LED automotriz</h3><p class="mt-2 text-sm leading-6 text-slate-400">Opciones para actualizar iluminación interior y exterior.</p></div>
+      </article>
+
+      <article id="biseles-and-adaptadores" class="service-card min-h-0">
+        <div class="service-icon">📐</div>
+        <h3 class="mt-5 text-lg font-black">Biseles & adaptadores</h3>
+        <p class="mt-2 text-sm leading-6 text-slate-400">Marcos específicos, adaptadores, conectores y elementos de integración. La compatibilidad se revisa por marca, modelo, año y versión.</p>
+        <a href="/cotizar" class="mt-5 inline-flex text-xs font-black uppercase tracking-wider text-cyan-300">Revisar compatibilidad →</a>
+      </article>
+
+      <article class="service-card min-h-0">
+        <div class="service-icon">🎛️</div>
+        <h3 class="mt-5 text-lg font-black">CANBUS & controles</h3>
+        <p class="mt-2 text-sm leading-6 text-slate-400">Interfaces para conservar funciones del vehículo cuando la instalación lo requiere.</p>
+        <a href="/cotizar" class="mt-5 inline-flex text-xs font-black uppercase tracking-wider text-cyan-300">Consultar →</a>
+      </article>
+
+      <article class="service-card min-h-0">
+        <div class="service-icon">✨</div>
+        <h3 class="mt-5 text-lg font-black">Upgrade integral</h3>
+        <p class="mt-2 text-sm leading-6 text-slate-400">Combina multimedia + seguridad + audio + accesorios en un solo proyecto.</p>
+        <a href="/cotizar" class="mt-5 inline-flex text-xs font-black uppercase tracking-wider text-cyan-300">Armar mi proyecto →</a>
+      </article>
+    </div>
+  </div>
+
+  <div class="mt-20 rounded-[2rem] border border-cyan-300/20 bg-cyan-300/5 p-8 sm:p-10">
+    <p class="section-kicker">Importante</p>
+    <h2 class="mt-2 text-3xl font-black">La compatibilidad manda.</h2>
+    <p class="mt-3 max-w-3xl leading-7 text-slate-300">
+      Las imágenes son referencias de productos y soluciones que podemos incorporar a proyectos. No significa que todos estén disponibles de inmediato ni que sean compatibles con cualquier vehículo.
+      Para cotizar, envíanos marca, modelo, año y una foto del tablero.
+    </p>
+    <a href="/cotizar" class="mt-6 inline-flex rounded-full bg-cyan-300 px-6 py-3 text-sm font-black text-slate-950 hover:bg-cyan-200">Cotizar mi upgrade →</a>
+  </div>
+</section>
+{% endblock %}

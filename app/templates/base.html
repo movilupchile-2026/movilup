@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071016">
+  <meta name="description" content="{% block description %}MovilUP Chile — Upgrade tecnológico y electrónico para tu vehículo.{% endblock %}">
+  <title>{% block title %}MovilUP Chile | No cambies de auto. Actualízalo.{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { movil: { bg:"#071016", cyan:"#67e8f9", line:"#20323b" } },
+          boxShadow: { glow:"0 0 40px rgba(34,211,238,.12)" }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body class="bg-movil-bg text-white antialiased selection:bg-cyan-300 selection:text-slate-950">
+  <div class="min-h-screen overflow-x-hidden">
+    {% include "components/navbar.html" %}
+    <main>{% block content %}{% endblock %}</main>
+    {% include "components/footer.html" %}
+  </div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

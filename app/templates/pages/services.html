@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Servicios | MovilUP Chile{% endblock %}
+{% block description %}Servicios de upgrade tecnológico y electrónico para vehículos.{% endblock %}
+{% block content %}<section class="mx-auto max-w-7xl px-5 py-28 lg:px-8"><p class="section-kicker">Servicios</p><h1 class="mt-3 text-5xl font-black sm:text-6xl">Tecnología para tu vehículo.</h1>
+<p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300">Radios multimedia, integración, cámaras, parking, TPMS externo, audio e iluminación LED.</p>
+<div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{% for title,text in [('Multimedia','Android, CarPlay, Android Auto y Bluetooth.'),('Integración','CANBUS, controles al volante, biseles y adaptadores.'),('Cámaras','Retroceso, espejos con cámara y dashcams.'),('Parking','Sensores para facilitar las maniobras.'),('TPMS externo','Presión y temperatura de neumáticos.'),('Audio','Subwoofers y mejoras de sonido.'),('Iluminación LED','Interior y exterior.'),('Upgrade completo','Proyecto a medida.') ] %}<article class="service-card"><h2 class="text-xl font-black">{{ title }}</h2><p class="mt-3 text-sm leading-6 text-slate-400">{{ text }}</p></article>{% endfor %}</div></section>{% endblock %}
