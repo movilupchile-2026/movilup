@@ -36,6 +36,14 @@ def create_app():
     def quote():
         return render_template("quotes/request.html")
 
+    @app.get("/diagnostico")
+    def diagnostic():
+        return render_template("pages/diagnostico.html")
+
+    @app.get("/precompra")
+    def pre_purchase():
+        return render_template("pages/precompra.html")
+
     return app
 
 
