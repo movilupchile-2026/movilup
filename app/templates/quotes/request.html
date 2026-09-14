@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Cotizar tu upgrade | MovilUP Chile{% endblock %}
-{% block description %}Configura tu upgrade, obtén una estimación y envía tu solicitud a MovilUP por WhatsApp.{% endblock %}
+{% block title %}Cotizar tu servicio | MovilUP Chile{% endblock %}
+{% block description %}Solicita una cotización para upgrades, diagnóstico electrónico, revisión precompra o limpieza profesional de tu vehículo.{% endblock %}
 
 {% block content %}
 <style>
@@ -273,6 +273,8 @@
     transform: none;
   }
 
+  .step-number { display:flex; flex:0 0 34px; width:34px; height:34px; align-items:center; justify-content:center; border:1px solid rgba(103,232,249,.20); border-radius:10px; background:rgba(103,232,249,.06); color:#67e8f9; font-size:11px; font-weight:900; }
+
   @media (max-width: 1023px) {
     .quote-summary { position: static; }
   }
@@ -291,7 +293,7 @@
         No cambies de auto.<br><span class="text-cyan-300">Actualízalo.</span>
       </h1>
       <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-        Configura tu proyecto, revisa una estimación inicial y envíanos tu solicitud por WhatsApp.
+        Configura tu proyecto, solicita un diagnóstico electrónico, una revisión precompra o una limpieza profesional y envíanos tu solicitud por WhatsApp.
         La compatibilidad y disponibilidad final se confirman antes de realizar el pedido.
       </p>
     </div>
@@ -305,7 +307,7 @@
           <p class="text-xs font-black uppercase tracking-[.22em] text-cyan-300">Paso 01</p>
           <h2 class="mt-2 text-2xl font-black text-white sm:text-3xl">Cuéntanos sobre tu vehículo</h2>
           <p class="mt-2 text-sm leading-6 text-slate-400">
-            Los campos con * son necesarios. Puedes seleccionar uno o varios upgrades.
+            Los campos con * son necesarios. Puedes seleccionar uno o varios servicios.
           </p>
         </div>
 
@@ -346,9 +348,9 @@
           </div>
 
           <fieldset class="sm:col-span-2">
-            <legend class="quote-label">¿Qué quieres actualizar? *</legend>
+            <legend class="quote-label">¿Qué necesitas? *</legend>
             <p class="mb-3 mt-1 text-xs leading-5 text-slate-500">
-              Los valores mostrados son <strong class="text-slate-300">referenciales</strong> y corresponden a una configuración base instalada.
+              Los valores mostrados son <strong class="text-slate-300">referenciales</strong>. Los servicios que requieren evaluación se cotizan según el vehículo y el trabajo necesario.
             </p>
 
             <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -361,6 +363,9 @@
                 ('Iluminación LED','Iluminación LED','💡','Iluminación interior o exterior',29990),
                 ('TPMS externo','TPMS externo','🛞','Monitoreo de presión y temperatura',29990),
                 ('Accesorios / biseles','Accesorios / biseles','🧩','Adaptadores, biseles y accesorios',19990),
+                ('Diagnóstico electrónico','Diagnóstico electrónico','🔎','Escaneo electrónico y lectura de sistemas disponibles',0),
+                ('Revisión electrónica precompra','Revisión electrónica precompra','🚘','Revisión electrónica antes de comprar un vehículo usado',0),
+                ('Limpieza profesional de tapiz e interior','Limpieza profesional de tapiz e interior','🧼','Limpieza profunda de interior y tapiz con equipamiento profesional',0),
                 ('Upgrade integral','Upgrade integral','⚡','Quiero mejorar varias áreas del vehículo',0),
                 ('No sé qué necesito','No sé qué necesito','💬','Quiero que me recomienden',0)
               ] %}
@@ -382,6 +387,14 @@
               {% endfor %}
             </div>
           </fieldset>
+
+          <div class="rounded-2xl border border-cyan-300/15 bg-cyan-300/5 p-4 sm:col-span-2">
+            <div class="flex gap-3"><span>🔎</span><p class="text-sm leading-6 text-slate-300"><strong class="text-white">¿Vas a comprar un auto usado?</strong> Podemos realizar una revisión electrónica precompra para conocer los códigos y datos disponibles de sus sistemas antes de tomar una decisión. Este servicio no reemplaza una inspección mecánica, estructural ni legal.</p></div>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-white/[.025] p-4 sm:col-span-2">
+            <div class="flex gap-3"><span>🧼</span><p class="text-sm leading-6 text-slate-300"><strong class="text-white">Limpieza profesional:</strong> podemos evaluar el estado del tapiz e interior y definir el tratamiento adecuado según suciedad, materiales y condiciones del vehículo.</p></div>
+          </div>
 
           <div class="sm:col-span-2">
             <label for="message" class="quote-label">Cuéntanos un poco más</label>
@@ -432,10 +445,12 @@
 
           <div class="quote-total">
             <div>
-              <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Total estimado</p>
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Subtotal referencial</p>
               <p id="quote-total" class="quote-total-value">$0</p>
             </div>
           </div>
+
+          <div id="quote-evaluation-note" class="mt-3 hidden rounded-xl border border-cyan-300/10 bg-cyan-300/5 p-3 text-xs leading-5 text-slate-400">Hay uno o más servicios que requieren evaluación personalizada. El valor final se confirma después de revisar el vehículo y el trabajo necesario.</div>
 
           <div class="quote-payment">
             <p class="text-xs font-black uppercase tracking-wider text-cyan-200">Confirmación del trabajo</p>
@@ -514,6 +529,7 @@
   const calculate = () => {
     const selected = getSelected();
     const priced = selected.filter(input => Number(input.dataset.price || 0) > 0);
+    const evaluation = selected.filter(input => Number(input.dataset.price || 0) === 0);
     const total = priced.reduce((sum, input) => sum + Number(input.dataset.price || 0), 0);
     const deposit = Math.round(total * 0.30);
     const balance = total - deposit;
@@ -522,24 +538,24 @@
     $("quote-deposit").textContent = total ? money.format(deposit) : "$0";
     $("quote-balance").textContent = total ? money.format(balance) : "$0";
 
+    const evaluationNote = $("quote-evaluation-note");
+    if (evaluation.length) evaluationNote.classList.remove("hidden");
+    else evaluationNote.classList.add("hidden");
+
     const list = $("quote-selected-list");
     list.innerHTML = "";
-
     if (!selected.length) {
-      list.innerHTML = '<p class="text-sm text-slate-500">Aún no has seleccionado upgrades.</p>';
-      return { selected, total, deposit, balance };
+      list.innerHTML = '<p class="text-sm text-slate-500">Aún no has seleccionado servicios.</p>';
+      return { selected, evaluation, total, deposit, balance };
     }
-
     selected.forEach((input) => {
       const row = document.createElement("div");
       row.className = "quote-summary-row";
       const price = Number(input.dataset.price || 0);
-      row.innerHTML = "<span>" + input.value + "</span><strong>" +
-        (price ? money.format(price) : "A evaluar") + "</strong>";
+      row.innerHTML = "<span>" + input.value + "</span><strong>" + (price ? money.format(price) : "A evaluar") + "</strong>";
       list.appendChild(row);
     });
-
-    return { selected, total, deposit, balance };
+    return { selected, evaluation, total, deposit, balance };
   };
 
   form.querySelectorAll('input[name="services"]').forEach(input => {
@@ -602,6 +618,10 @@
       const price = Number(input.dataset.price || 0);
       lines.push("• " + input.value + " — " + (price ? money.format(price) : "A evaluar"));
     });
+
+    if (result.evaluation.length) {
+      lines.push("🔎 *SERVICIOS A EVALUAR:* " + result.evaluation.map(input => input.value).join(", "), "ℹ️ El valor final de estos servicios se confirma después de evaluar el vehículo y el trabajo necesario.");
+    }
 
     lines.push(
       "",

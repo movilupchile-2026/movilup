@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}MovilUP Chile | No cambies de auto. Actualízalo.{% endblock %}
-{% block description %}Moderniza tu vehículo con radios multimedia, CarPlay, Android Auto, cámaras, sensores, dashcams, TPMS externo, audio e iluminación LED.{% endblock %}
+{% block description %}Tecnología, diagnóstico y cuidado para tu vehículo: upgrades multimedia, seguridad, diagnóstico electrónico, revisión precompra y limpieza profesional.{% endblock %}
 {% block content %}
 <section class="relative isolate flex min-h-[760px] items-center overflow-hidden pt-20">
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_75%_40%,rgba(34,211,238,.13),transparent_30%),linear-gradient(180deg,#071016_0%,#08131a_65%,#071016_100%)]"></div>
@@ -8,7 +8,7 @@
     <div class="max-w-2xl">
       <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/5 px-3 py-1.5 text-xs font-bold uppercase tracking-[.18em] text-cyan-200"><span class="h-1.5 w-1.5 rounded-full bg-cyan-300"></span> Tecnología para tu vehículo</div>
       <h1 class="text-5xl font-black leading-[.94] tracking-[-.045em] sm:text-6xl lg:text-7xl">No cambies de auto.<span class="block text-cyan-300">Actualízalo.</span></h1>
-      <p class="mt-7 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl">Modernizamos tu vehículo con tecnología, conectividad, seguridad y electrónica. Desde una radio multimedia hasta un upgrade completo.</p>
+      <p class="mt-7 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl">Modernizamos, diagnosticamos y cuidamos tu vehículo con soluciones tecnológicas, electrónicas y servicios pensados para tomar mejores decisiones.</p>
       <div class="mt-9 flex flex-col gap-3 sm:flex-row">
         <a href="#cotizar" class="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-7 py-3.5 text-sm font-black text-slate-950 transition hover:bg-cyan-200 hover:shadow-glow">Cotizar mi proyecto →</a>
         <a href="#trabajos" class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-bold transition hover:border-cyan-300/40 hover:bg-white/10">Ver trabajos reales</a>
@@ -31,9 +31,9 @@
 
 <section id="servicios" class="scroll-mt-24 border-t border-white/5 bg-[#081219]">
   <div class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-    <div class="max-w-2xl"><p class="section-kicker">Lo que hacemos</p><h2 class="section-title">Dale a tu vehículo la tecnología que le falta.</h2><p class="section-copy">Soluciones pensadas para mejorar la experiencia de conducción, la seguridad y la conectividad.</p></div>
+    <div class="max-w-2xl"><p class="section-kicker">Lo que hacemos</p><h2 class="section-title">Tecnología, diagnóstico y cuidado para tu vehículo.</h2><p class="section-copy">Desde upgrades tecnológicos hasta diagnóstico electrónico y cuidado interior: soluciones reales para tu vehículo.</p></div>
     <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {% set services = [('📱','Multimedia','Radios Android, CarPlay, Android Auto, Bluetooth y más.'),('🎛️','Integración','CANBUS, controles al volante, biseles y adaptadores.'),('📷','Cámaras','Cámaras de retroceso, espejos con cámara y dashcams.'),('🅿️','Parking','Sensores de estacionamiento para maniobrar con mayor confianza.'),('🛞','TPMS externo','Monitorea presión y temperatura de tus neumáticos.'),('🔊','Audio','Subwoofers y upgrades para mejorar tu experiencia sonora.'),('💡','Iluminación LED','Actualiza la iluminación interior y exterior de tu vehículo.'),('✨','Upgrade completo','Combinamos soluciones para crear un proyecto a tu medida.')] %}
+      {% set services = [('📱','Multimedia','Radios Android, CarPlay, Android Auto, Bluetooth y más.'),('🎛️','Integración','CANBUS, controles al volante, biseles y adaptadores.'),('📷','Cámaras','Cámaras de retroceso, espejos con cámara y dashcams.'),('🅿️','Parking','Sensores de estacionamiento para maniobrar con mayor confianza.'),('🛞','TPMS externo','Monitorea presión y temperatura de tus neumáticos.'),('🔊','Audio','Subwoofers y upgrades para mejorar tu experiencia sonora.'),('💡','Iluminación LED','Actualiza la iluminación interior y exterior de tu vehículo.'),('🔎','Diagnóstico electrónico','Evaluación electrónica del vehículo con informe de los resultados obtenidos.'),('🚘','Revisión precompra','Revisión electrónica para ayudarte a conocer mejor un vehículo usado antes de comprarlo.'),('🧼','Limpieza profesional','Limpieza profunda de tapiz e interior con equipamiento profesional.'),('✨','Upgrade completo','Combinamos soluciones para crear un proyecto a tu medida.')] %}
       {% for icon,title,text in services %}<article class="service-card"><div class="service-icon">{{ icon }}</div><h3 class="mt-6 text-lg font-extrabold">{{ title }}</h3><p class="mt-2 text-sm leading-6 text-slate-400">{{ text }}</p><a href="#cotizar" class="mt-5 inline-flex text-xs font-black uppercase tracking-wider text-cyan-300">Cotizar →</a></article>{% endfor %}
     </div>
   </div>
@@ -44,7 +44,7 @@
     <div><p class="section-kicker">Una historia real</p><h2 class="section-title">Desde 2018, un vehículo a la vez.</h2></div>
     <div>
       <p class="text-xl leading-9 text-slate-300">MovilUP nace de un proyecto que comenzó en 2018 realizando instalaciones de radios y soluciones electrónicas a domicilio. Con el tiempo llegaron cámaras de retroceso, sensores, iluminación, audio y pequeños trabajos eléctricos.</p>
-      <p class="mt-6 leading-7 text-slate-400">Hoy retomamos ese proyecto con una nueva identidad y una visión más tecnológica: ayudarte a modernizar el vehículo que ya tienes, con una instalación cuidada y una solución adecuada para cada modelo.</p>
+      <p class="mt-6 leading-7 text-slate-400">Hoy retomamos ese proyecto con una visión más amplia: tecnología para actualizar tu vehículo, diagnóstico electrónico para conocer mejor su estado y servicios de cuidado para mantenerlo en mejores condiciones.</p>
       <div class="mt-8 grid grid-cols-3 gap-3"><div class="stat-card"><strong>2018</strong><span>Inicio del proyecto</span></div><div class="stat-card"><strong>Real</strong><span>Trabajos documentados</span></div><div class="stat-card"><strong>2026</strong><span>Nuevo comienzo</span></div></div>
     </div>
   </div>
@@ -83,7 +83,7 @@
 <section id="cotizar" class="scroll-mt-24">
   <div class="mx-auto max-w-7xl px-5 py-24 lg:px-8">
     <div class="relative overflow-hidden rounded-[2rem] border border-cyan-300/20 bg-[radial-gradient(circle_at_80%_20%,rgba(34,211,238,.18),transparent_30%),linear-gradient(135deg,#0d1b23,#081219)] p-8 sm:p-12 lg:p-16">
-      <div class="relative max-w-3xl"><p class="section-kicker">Tu próximo upgrade</p><h2 class="text-4xl font-black tracking-tight sm:text-5xl">Cuéntanos qué vehículo tienes. Nosotros vemos qué podemos hacer.</h2><p class="mt-5 max-w-2xl text-base leading-7 text-slate-300">Cuéntanos qué vehículo tienes y qué te gustaría mejorar. Podemos orientarte con compatibilidad, accesorios, disponibilidad y una propuesta para tu upgrade.</p><div class="mt-8 flex flex-col gap-3 sm:flex-row"><a href="/cotizar" class="inline-flex items-center justify-center rounded-full bg-cyan-300 px-7 py-3.5 text-sm font-black text-slate-950 hover:bg-cyan-200">Solicitar cotización</a><a href="https://wa.me/56940577763?text=Hola%20MovilUP%2C%20quiero%20consultar%20por%20un%20upgrade%20para%20mi%20veh%C3%ADculo." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-bold hover:border-cyan-300/40 hover:bg-white/10"><span>💬</span> Hablar por WhatsApp</a></div></div>
+      <div class="relative max-w-3xl"><p class="section-kicker">Tu próximo upgrade</p><h2 class="text-4xl font-black tracking-tight sm:text-5xl">Cuéntanos qué vehículo tienes. Nosotros vemos qué podemos hacer.</h2><p class="mt-5 max-w-2xl text-base leading-7 text-slate-300">Envíanos marca, modelo, año y fotografías del tablero. Así podemos evaluar compatibilidad, accesorios necesarios y preparar una propuesta.</p><div class="mt-8 flex flex-col gap-3 sm:flex-row"><a href="/cotizar" class="inline-flex items-center justify-center rounded-full bg-cyan-300 px-7 py-3.5 text-sm font-black text-slate-950 hover:bg-cyan-200">Solicitar cotización</a><a href="#" class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-bold hover:bg-white/10">Hablar por WhatsApp</a></div></div>
     </div>
   </div>
 </section>
